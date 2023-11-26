@@ -3,7 +3,7 @@ import React, { useRef, useState } from 'react';
 import { View, Text, ScrollView } from 'react-native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { Ionicons } from '@expo/vector-icons';
-import SearchInput from './SearchInput';
+// import SearchInput from './SearchInput';
 import GradientButton from './GradientButton';
 
 const HomeScreen = ({ navigation }) => {
@@ -24,11 +24,11 @@ const HomeScreen = ({ navigation }) => {
 
   const additionalTexts = ['어제', '11월 10일', '11월 8일'];
 
+  //Text 두 개 사이에 <SearchInput />
   return (
     <View style={{ flex: 1, padding: 20, backgroundColor: 'white' }}>
       <Text style={{ fontSize: 40, fontWeight: 'bold', marginBottom: 20 }}>토론섬</Text>
 
-      <SearchInput />
 
       <Text style={{ fontSize: 24, fontWeight: 'bold', marginBottom: 20 }}>Today</Text>
       <GradientButton
@@ -60,7 +60,7 @@ const HomeScreen = ({ navigation }) => {
       <Text style={{ fontSize: 24, fontWeight: 'bold', marginBottom: 20 }}>Best</Text>
       <GradientButton
         colors={['#FFECA8', '#FFF3C9']}
-        onPress={() => navigation.navigate('Page1')}
+        onPress={() => navigation.navigate('Best')}
         buttonText="베스트 토론"
         additionalText=""
       />

@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import { StyleSheet, View, SafeAreaView, ScrollView, Animated, Platform } from "react-native";
-import Header from "../components/BestHeader";
-import BestRecBtn from "../components/BestRecBtn";
-import BackButton from "../components/BestBackButton";
+import Header from "../components/Best/BestHeader";
+import BestRecBtn from "../components/Best/BestRecBtn";
+import BackButton from "../components/Best/BestBackButton";
 import { LinearGradient } from "expo-linear-gradient";
 
 const BestScreen = () => {
@@ -15,13 +15,15 @@ const BestScreen = () => {
     // 다른 게시글 데이터들
   ]);
 
-  // [수정]
-  // 1. (마지막) 두 줄 이상 넘어갈 때 왼쪽 정렬 -> 가운데 정렬 (데이터 저장할 때 아예?)
-  // 2. 참여자 수에 쉼표
-  // 3. 날짜 년 월 일
-  // 4. Rec 안에 색 다른 거 변경
-  // 5. 흐려지게 이동 없애기 
-  // 6. 크기 줄어들고 없어지지 않게 zindex 설정해 주기
+  // [추후 수정]
+  // 1. (마지막에) 두 줄 이상 넘어갈 때 왼쪽 정렬 -> 가운데 정렬 (데이터 저장할 때 아예?)
+  // 2. 참여자 수에 쉼표 (데이터 저장할 때 하면 되나?)
+  // 3. 날짜 년 월 일 나누고 글자 빼서 숫자로만 관리
+  // 4. 애니메이션 뮨제 수정 or 타협
+      // 문제 1. header height 줄어들게 했더니 글자 범위도 같이 줄어들어서 글자가 사라짐
+      // 문제 2. 텍스트 크기가 안 줄어들음
+      // 스크롤 시 header가 작아지면서 화살표 옆으로 가는 애니메이션을 원함
+      // header height를 줄이지 말고 <-랑 Header를 감싸는 container를 둔 다음에 header 위치만 변경해도 되나?
 
 
   const scrollY = new Animated.Value(0);
@@ -33,22 +35,24 @@ const BestScreen = () => {
     extrapolate: 'clamp', // 예외 발생 시 : 근사치로 알아서 (내가 이해한 바로는 이럼)
   });
 
-  // 위로 이동
+  // 위로 이동하는 애니메이션
   const headerTranslateY = scrollY.interpolate({
     inputRange: [0, 200],
     outputRange: [0, -150],
     extrapolate: 'clamp',
   });
 
+  // 투명도 변하는 애니메이션
     const headerOpacity = scrollY.interpolate({
     inputRange: [0, 200],
-    outputRange: [1, 1], // 투명도 달라질 필요가 없어짐
+    outputRange: [1, 1], // 애니메이션 수정 후 투명도는 없애기
     extrapolate: 'clamp',
   });
 
+  // 텍스트 사이즈 달라지는 애니메이션
   const headerTextSize = scrollY.interpolate({
     inputRange: [0, 200],
-    outputRange: [24, 5],
+    outputRange: [24, 18], // 이거 작동이 안 됨 ㅡㅡ;;
     extrapolate: 'clamp',
   });
 
@@ -64,7 +68,7 @@ const BestScreen = () => {
                     end={{ x: 0.5, y: 0.5 }}
                     style={styles.gradientBackground}>
       <SafeAreaView style={styles.container}>
-        <BackButton />
+        <BackButton onPress={() => navigation.navigate('Home')} />
         <Animated.View
           style={[
             styles.headerContainer,

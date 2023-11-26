@@ -2,6 +2,14 @@ import React, { useEffect, useState } from 'react';
 import { View, Text } from 'react-native';
 import axios from 'axios';
 
+import { NavigationContainer } from '@react-navigation/native';
+import { createStackNavigator } from '@react-navigation/stack';
+
+import BestScreen from './screens/BestScreen';
+import HomeScreen from './screens/HomeScreen';
+
+const Stack = createStackNavigator();
+
 export default function App() {
   const [data, setData] = useState('');
 
@@ -17,8 +25,11 @@ export default function App() {
   }, []);
 
   return (
-    <View>
-      <Text>Hello World!</Text>
-    </View>
+    <NavigationContainer>
+    <Stack.Navigator initialRouteName="Home">
+      <Stack.Screen name="Home" component={HomeScreen} />
+      <Stack.Screen name="Best" component={BestScreen} />
+    </Stack.Navigator>
+  </NavigationContainer>
   );
 };
