@@ -18,7 +18,7 @@ export default function App() {
 
   return (
     <View>
-      <Text>{data}</Text>
+      <Text>Hello World!</Text>
     </View>
   );
 };
