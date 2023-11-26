@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { View, Text } from 'react-native';
 import axios from 'axios';
+import AgreeMain from './components/AgreeJang/AgreeMain';
 
 export default function App() {
   const [data, setData] = useState('');
