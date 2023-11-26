@@ -5,18 +5,18 @@ import { TouchableOpacity ,StyleSheet, Text, View, StatusBar, Image, SafeAreaVie
 const  AgreeHeader =()=> {
     
 const styles = StyleSheet.create({
-      header:{
-        flex: 1,
-        
-      },
+
       title:{
-        fontSize: 25,
+        fontSize: 20,
         fontWeight: 'bold',
-        marginTop: 50
+        marginTop: 20,
+        marginBottom: 0
       },
       backImage:{
         width: 30,
-        height: 30
+        height: 30,
+        marginTop: 10
+
       }
 })
     return(
