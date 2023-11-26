@@ -4,7 +4,12 @@ import React, { useRef, useState } from 'react';
 import { View, TouchableOpacity, Text, TextInput, ScrollView, Image } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
 import { Ionicons } from '@expo/vector-icons';
+<<<<<<< HEAD:toronFront/screens/HomeScreen.js
+// import SearchInput from './SearchInput';
+import GradientButton from './GradientButton';
+=======
 import TodayChat from '../assets/todayChat.png';
+>>>>>>> 9253808d5e77f5d589e55bca3ef91b072bb9bd3c:toronFront/components/HomeScreen.js
 
 const HomeScreen = ({ navigation }) => {
   // ScrollView의 참조 및 너비 상태 관리를 위한 상태 변수들
@@ -32,10 +37,13 @@ const HomeScreen = ({ navigation }) => {
     "이전 토론 더보기",
   ];
 
+  //Text 두 개 사이에 <SearchInput />
   return (
     <View style={{ flex: 1, padding: 20, backgroundColor: 'white' }}>
       <Text style={{ fontSize: 30, fontWeight: 'bold', marginBottom: 20 }}>토론섬</Text>
 
+<<<<<<< HEAD:toronFront/screens/HomeScreen.js
+=======
       {/* 검색 입력란 */}
       <View style={{ flexDirection: 'row', alignItems: 'center', marginBottom: 20 }}>
         <TextInput
@@ -51,6 +59,7 @@ const HomeScreen = ({ navigation }) => {
         />
         <Ionicons name="search" size={20} style={{ position: 'absolute', left: 15, zIndex: 1, color:'gray' }} />
       </View>
+>>>>>>> 9253808d5e77f5d589e55bca3ef91b072bb9bd3c:toronFront/components/HomeScreen.js
 
       {/* today */}
       <Text style={{ fontSize: 24, fontWeight: 'bold', marginBottom: 10 }}>Today</Text>
@@ -131,6 +140,15 @@ const HomeScreen = ({ navigation }) => {
         ))}
       </ScrollView>
 
+<<<<<<< HEAD:toronFront/screens/HomeScreen.js
+      <Text style={{ fontSize: 24, fontWeight: 'bold', marginBottom: 20 }}>Best</Text>
+      <GradientButton
+        colors={['#FFECA8', '#FFF3C9']}
+        onPress={() => navigation.navigate('Best')}
+        buttonText="베스트 토론"
+        additionalText=""
+      />
+=======
       {/* best */}
       <Text style={{ fontSize: 24, fontWeight: 'bold', marginBottom: 10 }}>Best</Text>
       <View>
@@ -152,6 +170,7 @@ const HomeScreen = ({ navigation }) => {
           </LinearGradient>
         </TouchableOpacity>
       </View>
+>>>>>>> 9253808d5e77f5d589e55bca3ef91b072bb9bd3c:toronFront/components/HomeScreen.js
     </View>
   );
 };
