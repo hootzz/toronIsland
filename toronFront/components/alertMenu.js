@@ -1,6 +1,6 @@
 import { Image, Text, TouchableOpacity, View, StyleSheet } from "react-native";
-import Chat from "../assets/img/chat.png";
-import Notice from "../assets/img/notice.png";
+import Chat from "../assets/chat.png";
+import Notice from "../assets/notice.png";
 
 // 데베 되면 new 표시 터치0/1 만들기
 

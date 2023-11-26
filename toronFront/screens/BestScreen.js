@@ -4,6 +4,7 @@ import Header from "../components/Best/BestHeader";
 import BestRecBtn from "../components/Best/BestRecBtn";
 import BackButton from "../components/Best/BestBackButton";
 import { LinearGradient } from "expo-linear-gradient";
+import { createStackNavigator } from '@react-navigation/stack';
 
 const BestScreen = () => {
   const [data, setData] = useState([
@@ -38,14 +39,14 @@ const BestScreen = () => {
   // 위로 이동하는 애니메이션
   const headerTranslateY = scrollY.interpolate({
     inputRange: [0, 200],
-    outputRange: [0, -150],
+    outputRange: [0, -30],
     extrapolate: 'clamp',
   });
 
   // 투명도 변하는 애니메이션
     const headerOpacity = scrollY.interpolate({
-    inputRange: [0, 200],
-    outputRange: [1, 1], // 애니메이션 수정 후 투명도는 없애기
+    inputRange: [0, 50],
+    outputRange: [1, 0], // 애니메이션 수정 후 투명도는 없애기
     extrapolate: 'clamp',
   });
 
@@ -59,16 +60,15 @@ const BestScreen = () => {
   return (
     <LinearGradient
                     colors={[
-                      'rgba(253, 200, 209, 0.3)',
-                      'rgba(207, 186, 253, 0.3)',
-                      'rgba(168, 241, 161, 0.3)',
-                      'rgba(194, 244, 252, 0.3)',
+                      'rgba(253, 200, 209, 0.2)',
+                      'rgba(207, 186, 253, 0.2)',
+                      'rgba(168, 241, 161, 0.2)',
+                      'rgba(194, 244, 252, 0.2)',
                     ]}
                     start={{ x: 0.05, y: 0.1286 }}
                     end={{ x: 0.5, y: 0.5 }}
                     style={styles.gradientBackground}>
       <SafeAreaView style={styles.container}>
-        <BackButton onPress={() => navigation.navigate('Home')} />
         <Animated.View
           style={[
             styles.headerContainer,
@@ -119,7 +119,7 @@ const styles = StyleSheet.create({
     marginHorizontal: 20,
   },
   header: {
-    paddingTop: Platform.OS === 'ios' ? 30 : 10,
+    paddingTop: Platform.OS === 'ios' ? 5 : 10,
     height: '100%',
     justifyContent: 'center',
   },

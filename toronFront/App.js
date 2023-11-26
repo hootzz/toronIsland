@@ -1,13 +1,18 @@
 import React, { useEffect, useState } from 'react';
-import { View, Text } from 'react-native';
+import { View, Text, TouchableOpacity } from 'react-native';
 import axios from 'axios';
-import AgreeMain from './components/AgreeJang/AgreeMain';
+import { Ionicons } from '@expo/vector-icons';
 
-import { NavigationContainer } from '@react-navigation/native';
+import { NavigationContainer, DrawerActions } from '@react-navigation/native';
+import { createDrawerNavigator } from '@react-navigation/drawer';
 import { createStackNavigator } from '@react-navigation/stack';
 
 import BestScreen from './screens/BestScreen';
 import HomeScreen from './screens/HomeScreen';
+import AgreeMain from './screens/AgreeMain';
+import AlertScreen from './screens/alert';
+import StartScreen from './screens/startIndex';
+import MypageScreen from './screens/mypage';
 
 const Stack = createStackNavigator();
 
@@ -28,8 +33,30 @@ export default function App() {
   return (
     <NavigationContainer>
     <Stack.Navigator initialRouteName="Home">
-      <Stack.Screen name="Home" component={HomeScreen} />
+      <Stack.Screen name="Home" component={HomeScreen} 
+                    options={{
+                      headerLeft: ({ navigation }) => (
+                        <TouchableOpacity
+                          onPress={() => navigation.dispatch(DrawerActions.toggleDrawer())}
+                        >
+                          <Ionicons name="menu" size={30} />
+                        </TouchableOpacity>
+                      ),
+                      headerRight: () => (
+                        <TouchableOpacity onPress={() => alert('Notification')}>
+                          <Ionicons name="notifications" size={25} />
+                        </TouchableOpacity>
+                      ),
+                    }}
+        />
+      <Stack.Screen name="Alert" component={AlertScreen} />
+      <Stack.Screen name="Board" component={AgreeMain} />
       <Stack.Screen name="Best" component={BestScreen} />
+      <Stack.Screen name="Start" component={StartScreen} />
+      <Drawer.Navigator initialRouteName="Home">
+        <Drawer.Screen name="Home" component={HomeScreen} />
+        <Drawer.Screen name="My Page" component={MypageScreen} />
+      </Drawer.Navigator>
     </Stack.Navigator>
   </NavigationContainer>
   );

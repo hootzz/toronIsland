@@ -1,11 +1,11 @@
 import React from "react";
 import { StatusBar } from 'expo-status-bar';
 import { KeyboardAwareScrollView,StyleSheet, Text, View, ScrollView, Platform, KeyboardAvoidingView } from 'react-native';
-import AgreeHeader from "./AgreeHeader";
-import AgreeContainer from "./AgreeContainer";
-import AgreeComment from "./AgreeComment";
+import AgreeHeader from "../components/AgreeJang/AgreeHeader";
+import AgreeContainer from "../components/AgreeJang/AgreeContainer";
+import AgreeComment from "../components/AgreeJang/AgreeComment";
 import { LinearGradient } from 'expo-linear-gradient'
-import AgreeInput from "./AgreeInput";
+import AgreeInput from "../components/AgreeJang/AgreeInput";
 // background FDC8E1: 왼쪽 끝 : 연분홍
 // CFBAFD 그 다음 : 연보라 
 // A8F1A1 그 다음 : 연두
