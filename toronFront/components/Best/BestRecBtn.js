@@ -5,8 +5,8 @@ const ToronCard = ({ date, title, participants }) => {
   const [participantsWidth, setParticipantsWidth] = useState(0);
 
   useEffect(() => {
-    // participants 길이에 따라서 달라지게
-    // participants 수에 쉼표 추가 어렵나?
+    // participants 길이에 따라서 달라짐
+    // [추후 수정] participants 수에 자동 쉼표 추가 (어렵나?)
     setParticipantsWidth(participants.toString().length * 10 + 70);
   }, [participants]);
 
@@ -45,7 +45,7 @@ const styles = StyleSheet.create({
     margin: 8,
     elevation: 3,
     borderRadius: 15,
-    marginBottom: 20, // [?] 이거 동적으로 안 되나?
+    marginBottom: 20, 
     overflow: 'hidden',
   },
   title: {

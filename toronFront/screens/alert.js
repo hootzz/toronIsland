@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Image, TouchableOpacity, View, Text, StyleSheet } from "react-native";
 import AlertMenu from "../components/alertMenu";
+import { createStackNavigator } from '@react-navigation/stack';
 
 export default function Alert(){
     const [checked, setChecked] = useState(0); /*확인유무 체크 check 이용해서 reddot 삽입 유무 결정 ~> onclick(setChecked)*/
