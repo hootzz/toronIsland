@@ -1,6 +1,6 @@
 import { View, TouchableOpacity, Image, Text, StyleSheet } from "react-native";
-import MypageProfile from "./mypageProfile";
-import MypageMenu from "./mypageMenu";
+import MypageProfile from "../components/Mypage/mypageProfile";
+import MypageMenu from "../components/Mypage/mypageMenu";
 import { useState } from "react";
 
 export default function Mypage(){
