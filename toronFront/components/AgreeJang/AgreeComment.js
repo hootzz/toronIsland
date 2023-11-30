@@ -1,3 +1,4 @@
+
 import React from "react";
 import { StyleSheet, Text, View, Image, ScrollView } from 'react-native';
 
@@ -11,7 +12,6 @@ const AgreeComment =()=>{
         },
         commentBox:{
             flex: 1,
-
 
             // 댓글 달리는 범위 padding 조정
             padding: 25,
@@ -80,14 +80,6 @@ const AgreeComment =()=>{
 }
 
 export default AgreeComment;
-
-
-
-
-
-
-
-
 
 
 

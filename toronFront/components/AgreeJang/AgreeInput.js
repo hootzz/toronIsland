@@ -1,3 +1,4 @@
+
 import React, { useState, useRef, useEffect } from 'react';
 import { Image, TouchableOpacity, View, Text, TextInput, ScrollView, KeyboardAvoidingView, Platform, StyleSheet, InputAccessoryView } from 'react-native';
 
@@ -55,7 +56,7 @@ const AgreeInput = () => {
         <View style={styles.inputStyle}>
             <View style={styles.right}>
                 <TouchableOpacity style={styles.buttonStyle} title="전송">
-                <Image style={styles.submitButton} source={require('../submit.png')} />
+                <Image style={styles.submitButton} source={require('../../assets/submit.png')} />
                     </TouchableOpacity>    
             </View>
         </View>

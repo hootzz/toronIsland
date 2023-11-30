@@ -145,12 +145,12 @@ const AgreeContainer =()=>{
 
           <View style={styles.AgreeButton}>
           <TouchableOpacity style={styles.AgreeBox}>
-            <Image style={styles.goodImage} source={require('../good.png')}></Image>
+            <Image style={styles.goodImage} source={require('../../assets/good.png')}></Image>
             <Text style={styles.Agree}>찬성</Text>
           </TouchableOpacity>
 
           <TouchableOpacity style={styles.disAgreeBox}>
-            <Image style={styles.badImage} source={require('../bad.png')}></Image>
+            <Image style={styles.badImage} source={require('../../assets/bad.png')}></Image>
             <Text style={styles.disAgree}>반대</Text>
           </TouchableOpacity>
           </View>
