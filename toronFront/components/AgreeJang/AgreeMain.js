@@ -31,6 +31,7 @@ const  AgreeMain =()=> {
         }
        
     })
+
     return(
         <View style={styles.main}>
             <LinearGradient  colors={['rgba(253,200,209,0.3)','rgba(207,186,253,0.3)','rgba(168,241,161,0.3)','rgba(194,244,252,0.3)']}

@@ -1,11 +1,11 @@
 import React from "react";
 import { StyleSheet, Text, View, StatusBar, Button, Image, TouchableOpacity, ScrollView } from 'react-native';
+import { useState, useEffect } from "react";
+import axios from 'axios';
 
 
 const AgreeContainer =()=>{
-
-
-    const styles = StyleSheet.create({
+  const styles = StyleSheet.create({
         container: {
             // flex: 1,
             paddingLeft: 25,
@@ -111,6 +111,22 @@ const AgreeContainer =()=>{
             marginBottom: 30
           }
     });
+    // api에게 받아온 값을 변경할 useState()
+    const [ chatData, setChatData ] = useState('');
+    // 마운트 
+    useEffect(()=>{
+      const fetchData = async () => {
+        try{
+          // 아래 서버로부터 응답 받음 
+            const response = await axios.get('htt://localhost:3000/getRandomDebateTopic');
+          // 받은 값을 chatData에 부여해 주기 위해 setChatData로 전송   
+            setChatData(response.data.chatData);
+        }catch(error){
+            console.log(error);
+        }
+      };
+      fetchData();
+    }, []);  
     return(
         <View style={[styles.container,{flexDirection: 'row',}]}>
       
@@ -123,8 +139,8 @@ const AgreeContainer =()=>{
           </View>
         
           <ScrollView style={styles.textBox}>
-            <Text style={styles.text}>대한민국의 장애인 복지 정책은 현재 만족스러운 수준인가요? 
-            어떤 수준이냐고요 어떤 수준이냐고 사람이 물었죠??</Text>
+            {/* // 서버로 전송 받은 채팅 데이터 화면에 출력 */}
+            <Text style={styles.text}>{chatData}</Text>
           </ScrollView>
 
           <View style={styles.AgreeButton}>
