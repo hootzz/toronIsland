@@ -40,10 +40,17 @@ const ToronCard = ({ date, title, participants }) => {
 const styles = StyleSheet.create({
   cardContainer: {
     elevation: 10,
-    backgroundColor: "rgba(255, 255, 255, 1)", //마지막은 투명도
+    backgroundColor: "rgba(255, 255, 255, 0.9)", //마지막은 투명도
     padding: 25,
     margin: 8,
     elevation: 3,
+    shadowOpacity: 2,
+    shadowRadius: 30,
+    shadowOffset: {
+      width: 5,
+      height: 6,
+    },
+    shadowColor: "rgba(0, 0, 0, 0.1)",
     borderRadius: 15,
     marginBottom: 20, 
     overflow: 'hidden',

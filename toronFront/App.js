@@ -48,12 +48,12 @@ const onPressNotifications = (navigation) => {
                     options={{
                       headerLeft: ({ navigation }) => (
                         <TouchableOpacity onPress={() => navigation && navigation.navigate('My Page')}>
-                          <Ionicons name="menu" size={30} />
+                          <Ionicons name="menu" size={30} style={"margin:10"} />
                         </TouchableOpacity>
                         //toggle로 열리게 하려다가 망한 코드입니다
                       ),
                       headerRight: ({ navigation }) => (
-                        <TouchableOpacity onPress={() => navigation.navigate('Alert')}>
+                        <TouchableOpacity onPress={() => navigation && navigation.navigate('Alert')}>
                           <Ionicons name="notifications" size={25} />
                         </TouchableOpacity>
                         // 이것도 이상하게 화면이 안 넘어가네요?

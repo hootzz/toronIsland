@@ -32,7 +32,7 @@ const BestScreen = () => {
   // 헤더의 높이 애니메이션
   const headerHeight = scrollY.interpolate({
     inputRange: [0, 200], // scrollY의 값이 이 안에서 변경될 시
-    outputRange: [100, 20], // 헤더가 변함 최대 높이 -> 최소 높이로
+    outputRange: [100, 10], // 헤더가 변함 최대 높이 -> 최소 높이로
     extrapolate: 'clamp', // 예외 발생 시 : 근사치로 알아서 (내가 이해한 바로는 이럼)
   });
 
