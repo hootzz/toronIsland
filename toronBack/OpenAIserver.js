@@ -117,6 +117,6 @@ app.get('/getRandomDebateTopic', async(req, res)=> {
 // express의 server 문법 
 // app.listen 내부에서 http 모듈로 감싼 후 return 
 // 내부적으로 http 모듈을 쓰는 것
-app.listen(port, () => {
+app.listen(port/getRandomDebateTopic, () => {
     console.log(`Server is running on http://localhost:${port}`);
 })
