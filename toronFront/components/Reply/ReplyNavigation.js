@@ -2,9 +2,9 @@ import { NavigationContainer } from "@react-navigation/native";
 import React from "react";
 import { StyleSheet, Text, View } from 'react-native';
 import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs';
-import AllScreen from './All';
-import AgreeScreen from './Agree';
-import DisagreeScreen from "./Disagree";
+import AllScreen from './ReplyAll';
+import AgreeScreen from './ReplyAgree';
+import DisagreeScreen from "./ReplyDisagree";
 
 const Tab = createMaterialTopTabNavigator();
 
