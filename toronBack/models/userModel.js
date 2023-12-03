@@ -6,7 +6,6 @@ const db = require('../config/db');
 
 
 //회원가입 데이터 저장 모델
-
 const User = {
     save : (data, callback) => {
         db.query('INSERT INTO user SET provider_id=?', data.id, callback);
