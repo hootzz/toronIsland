@@ -2,9 +2,9 @@ import React from "react";
 import { StyleSheet, Text, View, StatusBar, Button, Image, TouchableOpacity, ScrollView } from 'react-native';
 import { useState, useEffect } from "react";
 import axios from 'axios';
+import AgreeCommentList from "./AgreeCommentList";
 
-
-const AgreeContainer =()=>{
+const AgreeContainer =({})=>{
   const styles = StyleSheet.create({
         container: {
             // flex: 1,
@@ -13,6 +13,7 @@ const AgreeContainer =()=>{
             marginTop: 15,
             alignItems: 'center',
             justifyContent: 'center',
+            
           },
         
           hapBox: {
@@ -33,9 +34,10 @@ const AgreeContainer =()=>{
           },
           textBox:{
             marginTop: 10,
-            marginBottom: 3,
-            padding: 10,
-            height: 100
+            paddingTop: 10,
+            paddingBottom: 10,
+            paddingLeft: 15,
+            paddingRight: 15
           },
           text:{
             fontSize: 17,
@@ -108,9 +110,10 @@ const AgreeContainer =()=>{
           deadLineText:{
             color: '#B3B3B3',
             fontSize: 10,
-            marginBottom: 30
+            marginBottom: 23
           }
     });
+  
     // api에게 받아온 값을 변경할 useState()
     const [ chatData, setChatData ] = useState('');
     // 마운트 
@@ -126,7 +129,9 @@ const AgreeContainer =()=>{
         }
       };
       fetchData();
-    }, []);  
+    }, []); 
+    
+    
     return(
         <View style={[styles.container,{flexDirection: 'row',}]}>
       
@@ -140,7 +145,8 @@ const AgreeContainer =()=>{
         
           <ScrollView style={styles.textBox}>
             {/* // 서버로 전송 받은 채팅 데이터 화면에 출력 */}
-            <Text style={styles.text}>{chatData}</Text>
+            {/* <Text style={styles.text}>{chatData}</Text> */}
+            <Text style={styles.text}>대한민국의 장애인 복지 정책은 현재 만족스러운 수준인가용?</Text>
           </ScrollView>
 
           <View style={styles.AgreeButton}>
@@ -160,8 +166,9 @@ const AgreeContainer =()=>{
          </View>
          </View>
 
-    
+          
           <StatusBar style="auto" />
+          
       </View>
     )
 }

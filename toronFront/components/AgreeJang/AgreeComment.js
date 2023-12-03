@@ -1,21 +1,16 @@
-
 import React from "react";
 import { StyleSheet, Text, View, Image, ScrollView } from 'react-native';
 
 const AgreeComment =()=>{
     const styles = StyleSheet.create({
         comment:{
-            flex: 1,
             padding: 25,
             alignItems: 'center',
             justifyContent: 'center',
         },
         commentBox:{
-            flex: 1,
-
-            // 댓글 달리는 범위 padding 조정
-            padding: 25,
-            backgroundColor: 'rgba(255,255,255,0.75)',
+            padding: 22,
+            backgroundColor: 'rgba(255,255,255,0.85)',
             borderRadius: 30,
             elevation: 1,
             
@@ -80,10 +75,3 @@ const AgreeComment =()=>{
 }
 
 export default AgreeComment;
-
-
-
-
-
-
-
