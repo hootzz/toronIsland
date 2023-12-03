@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from 'react';
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View, ScrollView, Platform, KeyboardAvoidingView, SafeAreaView } from 'react-native';
 import AgreeHeader from "../components/AgreeJang/AgreeHeader";
@@ -24,7 +24,7 @@ const  AgreeMain =({navigation})=> {
             flex: 4,
         },
         agreeCommentInputContainer: {
-            flex: 4, // 댓글 목록과 인풋에 대한 비율 조정
+            flex: 4, 
           },
         
        
@@ -38,6 +38,36 @@ const  AgreeMain =({navigation})=> {
           });
         }
       }, [navigation]);
+
+      const [comments, setComments] = useState([]);
+
+    const handleCommentAdded = async (newComment) => {
+        try {
+            const serverUrl = 'http://192.168.35.243:3000/comments'; //놑북IPv4 주소를 넣어야 오류가 안 생기더라구요...? 원래 이런건가
+
+            const commentData = {
+                username: '사용자명', // 사용자명을 실제 사용자명으로 변경
+                content: newComment.content,
+            };
+
+            const response = await fetch(serverUrl, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(commentData),
+            });
+
+            const result = await response.json();
+            console.log('댓글 추가 응답:', result);
+
+            setComments([...comments, result]);
+        } catch (error) {
+            console.error('댓글 추가 에러:', error);
+            Alert.alert('댓글 추가 실패', '댓글을 추가하는 중에 오류가 발생했습니다.');
+        }
+    };
+
 
     return(
         <View style={styles.main}>
@@ -60,7 +90,7 @@ const  AgreeMain =({navigation})=> {
             style={styles.agreeCommentInputContainer}>
                 {/* <AgreeCommentList  style={styles.agreeCommentList}/> */}
                 <AgreeCommentList />
-                <AgreeInput style={styles.AgreeInputStyle}/>
+                <AgreeInput onCommentAdded={handleCommentAdded} style={styles.AgreeInputStyle} />
 
             </KeyboardAvoidingView> 
 
