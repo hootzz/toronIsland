@@ -1,11 +1,9 @@
 // express 환경 설정
 const express = require('express');
 // open api module 가져오기 
-const mysql = require('mysql');
+const mysql = require('mysql2');
 const axios = require('axios'); // axios 라이브러리 추가
-const cors = reqire('cors');
-
-
+const cors = require('cors');
 const app = express();
 const port = 3000; 
 
@@ -13,24 +11,18 @@ const port = 3000;
 // 다른 도메인끼리의 요청을 허용함 
 app.use(cors());
 
-// sql 정보 및 연결 
-const connection = mysql.createConnection({
-    host:'',
-    user: '',
-    password: '',
-    database: 'f1t4',
-})
-
 
 const getRandomDebateTopic = () => {
-    const randomTopics = ['토론 주제 한 개만 질문 형태로 말해 줘 대답도 다 제외하고 주제만 보내 줘 주제만 주제만 주제만!! 20글자 이내로!!',
-                            '재미있는 토론 주제 한 개만 질문 형태로 말해 줘 대답도 다 제외하고 주제만 보내 줘 주제만 20글자 이내로!!',
-                            '애니메이션 캐릭터를 토대로 토론 주제 한 개만 질문 형태로 말해 줘 대답도 다 제외하고 주제만 보내 줘 주제만 20글자 이내로!!'];
+    const randomTopics = ['요즘 사회 문제에 관란 주제 한 개만 보내는데, 대답도 다 제외하고 ~에 대해 어떻게 생각하시나요?의 형태로 보내고, 50글자 이내로 부탁해',
+                            '찬성 반대로 나눌 수 있는 재미있는 토론 주제 한 개만 보내는데, 대답도 다 제외하고 ~에 대해 어떻게 생각하시나요?의 형태로 보내는데 예시도 함께 들어 줘100글자 이내로 부탁해 ',
+                            '사랑 관련한 토론 주제 한 개만 보내는데, 대답도 다 제외하고 해당 ~에 대해 어떻게 생각하시나요?의 형태로 50글자 이내로 보내 줘 '];
     // 위 배열의 값들 길이만큼의 인덱스 값들을 랜덤으로 부여 
     const randomIndex = Math.floor(Math.random() * randomTopics.length);
     // 배열 랜덤 주제 return 
     return randomTopics[randomIndex];
-  };
+  }; // 반환 값 형태 -> 배열[...length]
+
+
 const apiKey = '#';
 const getGPTResponse = async (topic) => {
     const requestOptions = {
@@ -53,7 +45,7 @@ const getGPTResponse = async (topic) => {
             // 모델의 출력 다양성 
             temperature: 0.8, 
             // 응답 받을 message 최대 단어 수 
-            max_tokens: 30,
+            max_tokens: 100,
             // 토큰 샘플링 확률 
             top_p: 1,
             //  일반적으로 나오지 않는 단어를 억제하는 정도 
@@ -85,6 +77,7 @@ app.use(express.json());
 
 // 라우트 : getRandomDebateTopic 엔드 포인트에 대한 GET 요청 처리 
 app.get('/getRandomDebateTopic', async(req, res)=> {
+    
     try{
         const query = 'SELECT * FROM 테이블 ORDER BY RAND() LIMIT 1'
         
@@ -117,6 +110,6 @@ app.get('/getRandomDebateTopic', async(req, res)=> {
 // express의 server 문법 
 // app.listen 내부에서 http 모듈로 감싼 후 return 
 // 내부적으로 http 모듈을 쓰는 것
-app.listen(port/getRandomDebateTopic, () => {
+app.listen(port, () => {
     console.log(`Server is running on http://localhost:${port}`);
 })

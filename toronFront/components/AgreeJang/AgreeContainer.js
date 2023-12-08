@@ -140,7 +140,7 @@ const AgreeContainer =()=>{
         
           <ScrollView style={styles.textBox}>
             {/* // 서버로 전송 받은 채팅 데이터 화면에 출력 */}
-            <Text style={styles.text}>{chatData}</Text>
+            <Text style={styles.text}></Text>
           </ScrollView>
 
           <View style={styles.AgreeButton}>

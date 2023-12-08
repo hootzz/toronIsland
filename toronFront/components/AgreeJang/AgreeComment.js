@@ -15,16 +15,11 @@ const AgreeComment =({comment})=>{
             justifyContent: 'center',
         },
         commentBox:{
-<<<<<<< HEAD
-            padding: 22,
-            backgroundColor: 'rgba(255,255,255,0.85)',
-=======
             flex: 1,
 
             // 댓글 달리는 범위 padding 조정
             padding: 25,
             backgroundColor: 'rgba(255,255,255,0.75)',
->>>>>>> 87b71af6 (231128 지현 홈페이지 수정..)
             borderRadius: 30,
             elevation: 1,
             
@@ -87,15 +82,6 @@ const AgreeComment =({comment})=>{
     )
 }
 
-<<<<<<< HEAD
-export default AgreeComment;
-=======
 export default AgreeComment;
 
 
-
-
-
-
-
->>>>>>> 87b71af6 (231128 지현 홈페이지 수정..)

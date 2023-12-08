@@ -1,9 +1,5 @@
-<<<<<<< HEAD
 import React, { useState } from 'react';
-=======
 
-import React from "react";
->>>>>>> 87b71af6 (231128 지현 홈페이지 수정..)
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View, ScrollView, Platform, KeyboardAvoidingView, SafeAreaView } from 'react-native';
 import AgreeHeader from "../components/AgreeJang/AgreeHeader";
