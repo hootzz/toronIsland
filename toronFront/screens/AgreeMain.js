@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View, ScrollView, Platform, KeyboardAvoidingView, SafeAreaView } from 'react-native';
 import AgreeHeader from "../components/AgreeJang/AgreeHeader";
