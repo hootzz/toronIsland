@@ -1,5 +1,5 @@
 import React from "react";
-import { StyleSheet, Text, View, StatusBar, Button, Image, TouchableOpacity, ScrollView } from 'react-native';
+import { FlatList, StyleSheet, Text, View, StatusBar, Button, Image, TouchableOpacity, ScrollView } from 'react-native';
 import { useState, useEffect } from "react";
 import axios from 'axios';
 
@@ -34,13 +34,15 @@ const AgreeContainer =()=>{
           textBox:{
             marginTop: 10,
             marginBottom: 3,
-            padding: 10,
-            height: 100
+            padding: 20,
+            height: 100,
+            // backgroundColor: 'pink'
           },
           text:{
             fontSize: 17,
             color: 'black',
-            fontWeight: '900'
+            fontWeight: '900',
+            // marginLeft: '20%'
           },
           contentBox:{
             backgroundColor: 'white',
@@ -111,22 +113,34 @@ const AgreeContainer =()=>{
             marginBottom: 30
           }
     });
-    // api에게 받아온 값을 변경할 useState()
-    const [ chatData, setChatData ] = useState('');
+    // // api에게 받아온 값을 변경할 useState()
+    // const [ chatData, setChatData ] = useState('');
     // 마운트 
-    useEffect(()=>{
-      const fetchData = async () => {
-        try{
-          // 아래 서버로부터 응답 받음 
-            const response = await axios.get('htt://localhost:3000/getRandomDebateTopic');
-          // 받은 값을 chatData에 부여해 주기 위해 setChatData로 전송   
-            setChatData(response.data.chatData);
-        }catch(error){
-            console.log(error);
-        }
-      };
-      fetchData();
-    }, []);  
+    // useEffect(()=>{
+    //   const fetchData = async () => {
+    //     try{
+    //       // 아래 서버로부터 응답 받음 
+    //         const response = await axios.get('htt://localhost:3000/getRandomDebateTopic');
+    //       // 받은 값을 chatData에 부여해 주기 위해 setChatData로 전송   
+    //         setChatData(response.data.chatData);
+    //     }catch(error){
+    //         console.log(error);
+    //     }
+    //   };
+    //   fetchData();
+    // }, []);  
+    const [data, setData] = useState([
+      // { id: '1', text: '매일 혼밥하기\n vs. \n매일 단체로 식사하기' },
+      // { id: '2', text: '송강호 떡 사주기 vs. 송강 호떡 사주기' },
+      { id: '3', text: '현재 대한민국 장애인 복지에 대해 어떻게 생각하시나요?' },
+      // ... 추가적인 아이템들
+    ]);
+    const randomText = ({ item }) => (
+      <View style={styles.textBox}> 
+        <Text style={styles.text}>{item.text}</Text>
+      </View>
+    )
+
     return(
         <View style={[styles.container,{flexDirection: 'row',}]}>
       
@@ -138,18 +152,23 @@ const AgreeContainer =()=>{
             </View>
           </View>
         
-          <ScrollView style={styles.textBox}>
+          {/* <ScrollView style={styles.textBox}> */}
             {/* // 서버로 전송 받은 채팅 데이터 화면에 출력 */}
-            <Text style={styles.text}></Text>
-          </ScrollView>
+            <FlatList
+             data={data}
+             renderItem={randomText}
+             keyExtractor={(item) => item.id}
+            >
+            </FlatList>
+          {/* </ScrollView> */}
 
           <View style={styles.AgreeButton}>
-          <TouchableOpacity style={styles.AgreeBox}>
+          <TouchableOpacity style={styles.AgreeBox} >
             <Image style={styles.goodImage} source={require('../../assets/good.png')}></Image>
             <Text style={styles.Agree}>찬성</Text>
           </TouchableOpacity>
 
-          <TouchableOpacity style={styles.disAgreeBox}>
+          <TouchableOpacity style={styles.disAgreeBox} >
             <Image style={styles.badImage} source={require('../../assets/bad.png')}></Image>
             <Text style={styles.disAgree}>반대</Text>
           </TouchableOpacity>
