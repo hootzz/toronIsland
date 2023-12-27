@@ -1,5 +1,5 @@
 const express = require('express');
-const router = express.Router;
+const router = express.Router();
 const userController = require('../controllers/userController');
 
 //google login process, 접근 시 구글 로그인 페이지로 리다이렉션
