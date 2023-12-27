@@ -30,6 +30,12 @@ passport.serializeUser((user, done) => {
   passport.deserializeUser((user, done) => {
     done(null, user);
 });
+/**
+ * done function
+ * 인증 프로세스 완료 위한 콜백함수
+ * 보통 인증에 성공했는지 못했는지 가리키는데 사용, 인증 유저에 대한 정보 제공
+ * done(error, user, info); 의 형태
+ */
 
 const isAuthenticated = (req, res, next) => {
     if (req.isAuthenticated()) {
