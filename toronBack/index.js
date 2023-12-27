@@ -1,6 +1,9 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const cors = require('cors');
+const passport = require('passport');
+const session = require('express-session');
+const userRoutes = require('./routes/userRoutes');
 
 const app = express();
 const port = process.env.PORT || 3000;
@@ -9,6 +12,14 @@ app.use(bodyParser.json());
 app.use(cors());
 
 const comments = [];
+
+//User google log-in logic start
+app.use(session({secret : '*', resave: true, saveUninitialized: true}));
+app.use(passport.initialize());
+app.use(passport.session());
+
+app.use('/', userRoutes);
+//User google log-in logic fin
 
 app.get('/', (req, res) => {
   res.send('Hello World!');
