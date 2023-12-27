@@ -22,10 +22,10 @@ export default function StartIndex(){
         return null;
     }
 
-    const serverUrl = 'http://localhost:3000';
+    // const serverUrl = 'http://localhost:3000';
     const googleLogInProcess = async()=>{
         try{
-            const googleAuthResponse = await axios.get(`${serverUrl}/google`)
+            const googleAuthResponse = await axios.get('http://localhost:3000/login/auth/google');
             console.log('구글 리다이렉션');
         } catch (error) {
         console.error('Error, Google login:', error);
