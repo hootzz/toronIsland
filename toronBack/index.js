@@ -14,7 +14,7 @@ app.use(cors());
 const comments = [];
 
 //User google log-in logic start
-app.use(session({secret : '*', resave: true, saveUninitialized: true}));
+app.use(session({secret : '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', resave: true, saveUninitialized: true}));
 app.use(passport.initialize());
 app.use(passport.session());
 
