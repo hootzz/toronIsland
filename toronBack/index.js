@@ -17,13 +17,13 @@ const comments = [];
 app.use(session({secret : '*', resave: true, saveUninitialized: true}));
 app.use(passport.initialize());
 app.use(passport.session());
-
+console.log('!');
 app.use('/', userRoutes);
 //User google log-in logic fin
 
-app.get('/', (req, res) => {
-  res.send('Hello World!');
-});
+// app.get('/', (req, res) => {
+//   res.send('Hello World!');
+// });
 
 app.get('/comments', (req, res) => {
   res.json(comments);
