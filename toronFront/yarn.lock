@@ -6298,7 +6298,7 @@
     "merge-stream" "^2.0.0"
     "supports-color" "^8.0.0"
 
-"jest-worker@^29.6.3":
+"jest-worker@^29.6.3", "jest-worker@^29.7.0":
   "integrity" "sha512-eIz2msL/EzL9UFTFFx7jBTkeZfku0yUAyZZZmJ93H2TYEiroIx2PQjEXcwYtYl8zXCxb+PAmA2hLIt/6ZEkPHw=="
   "resolved" "https://registry.npmjs.org/jest-worker/-/jest-worker-29.7.0.tgz"
   "version" "29.7.0"
@@ -7178,7 +7178,7 @@
     "metro-transform-plugins" "0.76.8"
     "nullthrows" "^1.1.1"
 
-"metro@^0.80.1", "metro@0.80.2":
+"metro@^0.80.2", "metro@0.80.2":
   "integrity" "sha512-iavBVpr3v4YD2XWUsL7peq/lUquX5KTH+dKc5Rw13XnDHDfoRgcMOmQjSn3xcFxP0R9P4uABML8YegAekoqjQg=="
   "resolved" "https://registry.npmjs.org/metro/-/metro-0.80.2.tgz"
   "version" "0.80.2"
@@ -8589,10 +8589,10 @@
   "resolved" "https://registry.npmjs.org/react-is/-/react-is-18.2.0.tgz"
   "version" "18.2.0"
 
-"react-native-gesture-handler@^2.14.0", "react-native-gesture-handler@>= 1.0.0", "react-native-gesture-handler@>= 1.5.0":
-  "integrity" "sha512-cOmdaqbpzjWrOLUpX3hdSjsMby5wq3PIEdMq7okJeg9DmCzanysHSrktw1cXWNc/B5MAgxAn9J7Km0/4UIqKAQ=="
-  "resolved" "https://registry.npmjs.org/react-native-gesture-handler/-/react-native-gesture-handler-2.14.0.tgz"
-  "version" "2.14.0"
+"react-native-gesture-handler@>= 1.0.0", "react-native-gesture-handler@>= 1.5.0", "react-native-gesture-handler@~2.12.0":
+  "integrity" "sha512-deqh36bw82CFUV9EC4tTo2PP1i9HfCOORGS3Zmv71UYhEZEHkzZv18IZNPB+2Awzj45vLIidZxGYGFxHlDSQ5A=="
+  "resolved" "https://registry.npmjs.org/react-native-gesture-handler/-/react-native-gesture-handler-2.12.1.tgz"
+  "version" "2.12.1"
   dependencies:
     "@egjs/hammerjs" "^2.0.17"
     "hoist-non-react-statics" "^3.3.0"

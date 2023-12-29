@@ -14,5 +14,5 @@ connection.query('SELECT * FROM board', (err, result)=> {
 });
 
 
-
+// 오류 개빡친다 
 mysqlModule.connect(connection);
