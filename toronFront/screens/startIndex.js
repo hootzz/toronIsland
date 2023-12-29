@@ -1,6 +1,9 @@
 import React, {useEffect, useState} from 'react';
 import { StyleSheet, Text, View, Image } from 'react-native';
 import * as Font from 'expo-font';
+import { GestureHandlerRootView, TouchableOpacity } from 'react-native-gesture-handler';
+import axios from 'axios';
+import Alert from './alert';
 
 
 export default function StartIndex(){
@@ -18,6 +21,19 @@ export default function StartIndex(){
     if(!fontLoad){
         return null;
     }
+
+    // const serverUrl = 'http://localhost:3000';
+    const googleLogInProcess = async()=>{
+        try{
+            const googleAuthResponse = await axios.get('http://localhost:3000/login/auth/google');
+            console.log('구글 리다이렉션');
+        } catch (error) {
+        console.error('Error, Google login:', error);
+        }
+    }
+    //404발생, 28dec
+    //해결하기,, ~ _감
+
     return(
         <View style={styles.body}>
             <View style={styles.header}>
@@ -27,17 +43,29 @@ export default function StartIndex(){
             </View>
             <View style={styles.signup}>
                 <Text style={styles.signupText}>SNS 계정으로 간편 가입하기</Text>
-                <View style={styles.signupBtn}>
-                    <Image 
-                        source={require('../assets/kakao.png')}
-                        style={styles.btn}></Image>
-                    <Image 
-                        source={require('../assets/naver.png')}
-                        style={styles.btn}></Image>
-                    <Image 
-                        source={require('../assets/google.png')}
-                        style={styles.btn}></Image>
-                </View>
+                <GestureHandlerRootView style={styles.signupBtnGroup}>
+                    <TouchableOpacity style={styles.signupBtn}>
+                        <View style={styles.btn}>
+                            <Image 
+                            source={require('../assets/kakao.png')}
+                            style={styles.img}></Image>
+                        </View>
+                    </TouchableOpacity>
+                    <TouchableOpacity style={styles.signupBtn}>
+                        <View style={styles.btn}>
+                            <Image 
+                            source={require('../assets/naver.png')}
+                            style={styles.img}></Image>
+                        </View>
+                    </TouchableOpacity>
+                    <TouchableOpacity style={styles.signupBtn} onPress={googleLogInProcess}>
+                        <View style={styles.btn}>
+                            <Image 
+                            source={require('../assets/google.png')}
+                            style={styles.img}></Image>
+                        </View>
+                    </TouchableOpacity>
+                </GestureHandlerRootView>
             </View>
         </View>
     );
@@ -51,7 +79,7 @@ const styles = StyleSheet.create({
     },
     header : {
         flex : 1,
-        backgroudColor : '#fcc',
+        backgroudColor : '#fff',
         justifyContent : 'center'
     },
     subTitle : {
@@ -83,18 +111,24 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'center',
     },
-    signupBtn : {
-        width : '80%',
+    signupBtnGroup : {
+        width : '90%',
         height : '20%',
         marginTop : '3%',
         alignItems: 'center',
         justifyContent: 'center',
         flexDirection : 'row'
     },
-    btn : {
-        width : '25%',
+    signupBtn : {
+        flex : 1,
+        margin : '10%'
+    },
+    btn :{
+        flex : 1,
+    },
+    img : {
+        width : '100%',
         height : '100%',
-        resizeMode : 'contain',
-        margin : '3%'
+        resizeMode : 'contain'
     }
 });

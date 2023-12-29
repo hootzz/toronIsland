@@ -2,10 +2,14 @@
 import React from "react";
 import { StyleSheet, Text, View, Image, ScrollView } from 'react-native';
 
-const AgreeComment =()=>{
+const AgreeComment =({comment})=>{
+    if (!comment) {
+        // comment가 전달되지 않았을 때, 처리할 내용
+        return null;
+      }
+
     const styles = StyleSheet.create({
         comment:{
-            flex: 1,
             padding: 25,
             alignItems: 'center',
             justifyContent: 'center',
@@ -67,8 +71,7 @@ const AgreeComment =()=>{
         
             <View style={styles.commentTextBox}>
                 <Text style={styles.commentText}>
-                    저는 이렇게 생각하고 저렇게 생각하고 
-                    이런 건 이렇게 해야 한다고 생각합니다
+                    {comment.content}
                 </Text>
             </View>
             
@@ -80,10 +83,5 @@ const AgreeComment =()=>{
 }
 
 export default AgreeComment;
-
-
-
-
-
 
 

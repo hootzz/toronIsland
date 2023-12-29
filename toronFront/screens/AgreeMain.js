@@ -1,37 +1,74 @@
+import React, { useState } from 'react';
 
-import React from "react";
 import { StatusBar } from 'expo-status-bar';
-import { KeyboardAwareScrollView,StyleSheet, Text, View, ScrollView, Platform, KeyboardAvoidingView } from 'react-native';
+import { StyleSheet, Text, View, ScrollView, Platform, KeyboardAvoidingView, SafeAreaView } from 'react-native';
 import AgreeHeader from "../components/AgreeJang/AgreeHeader";
 import AgreeContainer from "../components/AgreeJang/AgreeContainer";
-import AgreeComment from "../components/AgreeJang/AgreeComment";
 import { LinearGradient } from 'expo-linear-gradient'
 import AgreeInput from "../components/AgreeJang/AgreeInput";
+import AgreeCommentList from "../components/AgreeJang/AgreeCommentList";
+
 // background FDC8E1: 왼쪽 끝 : 연분홍
 // CFBAFD 그 다음 : 연보라 
 // A8F1A1 그 다음 : 연두
 // C2F4FC 그 다음 : 연하늘 
-const  AgreeMain =()=> {
+
+const  AgreeMain =({navigation})=> {
+
     const styles = StyleSheet.create({
         main:{
             flex: 1,
             padding: 20,
-            
+
           },
-        agreeComment:{
-            flex: 3,
-            backgroundColor: 'pink'
-        },
         agreeContainer:{
-            flex: 2,
-            zIndex: 2
+            flex: 4,
         },
-        AgreeInputStyle:{
-            flex: 1,
-            zIndex: 1
-        }
+        agreeCommentInputContainer: {
+            flex: 4, 
+          },
+        
        
     })
+    // 리액트 자동 설정 상단 바 삭제 
+    React.useLayoutEffect(() => {
+        // Ensure that navigation is defined before using setOptions
+        if (navigation) {
+          navigation.setOptions({
+            headerShown: false,
+          });
+        }
+      }, [navigation]);
+
+      const [comments, setComments] = useState([]);
+
+    const handleCommentAdded = async (newComment) => {
+        try {
+            const serverUrl = 'http://192.168.35.243:3000/comments'; //놑북IPv4 주소를 넣어야 오류가 안 생기더라구요...? 원래 이런건가
+
+            const commentData = {
+                username: '사용자명', // 사용자명을 실제 사용자명으로 변경
+                content: newComment.content,
+            };
+
+            const response = await fetch(serverUrl, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(commentData),
+            });
+
+            const result = await response.json();
+            console.log('댓글 추가 응답:', result);
+
+            setComments([...comments, result]);
+        } catch (error) {
+            console.error('댓글 추가 에러:', error);
+            Alert.alert('댓글 추가 실패', '댓글을 추가하는 중에 오류가 발생했습니다.');
+        }
+    };
+
 
     return(
         <View style={styles.main}>
@@ -39,24 +76,25 @@ const  AgreeMain =()=> {
                 style={StyleSheet.absoluteFillObject}
                 start={{ x: 0, y: 0 }}
                 end={{ x: 1, y: 1 }}
-                ></LinearGradient>
-               <View style={styles.agreeHeader}>
-                <AgreeHeader />
-                </View>
 
-                <View style={styles.agreeContainer}><AgreeContainer /></View>
-                
-                <ScrollView 
-                 keyboardShouldPersistTaps="handled"
-                // 스크롤 바를 숨기는 속성 
-                showsVerticalScrollIndicator={false}
-                style={styles.agreeComment}>
-                    <AgreeComment />
-                    <AgreeComment />
-                </ScrollView>
-                
-                <AgreeInput style={styles.AgreeInputStyle}/>
-                
+            ></LinearGradient>
+
+            <View style={styles.agreeHeader}>
+                <AgreeHeader />
+            </View>
+
+            <View style={styles.agreeContainer}>
+                <AgreeContainer />
+            </View>
+
+           <KeyboardAvoidingView behavior={Platform.OS === 'ios' ? 'position' : 'height'}
+            style={styles.agreeCommentInputContainer}>
+                {/* <AgreeCommentList  style={styles.agreeCommentList}/> */}
+                <AgreeCommentList />
+                <AgreeInput onCommentAdded={handleCommentAdded} style={styles.AgreeInputStyle} />
+
+            </KeyboardAvoidingView> 
+
             <StatusBar style="auto" />
 
         </View> 
